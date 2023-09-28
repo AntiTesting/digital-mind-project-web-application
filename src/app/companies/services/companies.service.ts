@@ -16,14 +16,14 @@ import { Post } from '../model/post';
   providedIn: 'root',
 })
 export class CompaniesService {
-  BaseURL: string = 'https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/companies';
+  BaseURL: string = 'http://localhost:8080/api/v1/companies';
 
-  socialNetworks = 'https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/socialNetworks';
+  socialNetworks = 'http://localhost:8080/api/v1/socialNetworks';
 
-  basePath = 'https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users';
+  basePath = 'http://localhost:8080/api/v1/users';
 
-  urlDeveloper = 'https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/developers';
-  urlPost = 'https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/posts';
+  urlDeveloper = 'http://localhost:8080/api/v1/developers';
+  urlPost = 'http://localhost:8080/api/v1/posts';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -102,19 +102,19 @@ export class CompaniesService {
 
   GetContacts(UserId:number): Observable<object> {
     return this.http
-      .get<object>(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/messages/LastMessageCompany`, this.httpOptions)
+      .get<object>(`http://localhost:8080/api/v1/users/${UserId}/messages/LastMessageCompany`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   GetMessages(contactId: number, UserId:number): Observable<object> {
     return this.http
-      .get(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/messages/${contactId}`, this.httpOptions)
+      .get(`http://localhost:8080/api/v1/users/${UserId}/messages/${contactId}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   SendMessage(answer: object, contactId:number, UserId:number): Observable<object> {
     return this.http
-      .post<object>(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/messages/${contactId}`, answer, this.httpOptions)
+      .post<object>(`http://localhost:8080/api/v1/users/${UserId}/messages/${contactId}`, answer, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -136,19 +136,19 @@ export class CompaniesService {
 
   GetNotificationByUserId(id:number, UserId:number): Observable<object> {
     return this.http
-      .get(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/notifications/${id}`, this.httpOptions)
+      .get(`http://localhost:8080/api/v1/users/${UserId}/notifications/${id}`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError));
   }
 
   SendNotification(notification: object, contactId: number, UserId:number, ): Observable<object> {
     return this.http
-      .post<object>(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/notifications/${contactId}`, JSON.stringify(notification) , this.httpOptions)
+      .post<object>(`http://localhost:8080/api/v1/users/${UserId}/notifications/${contactId}`, JSON.stringify(notification) , this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   DeleteNotificationById(id: number, UserId: number): Observable<object> {
     return this.http
-      .delete(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/notifications/${id}`, this.httpOptions)
+      .delete(`http://localhost:8080/api/v1/users/${UserId}/notifications/${id}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -171,7 +171,7 @@ export class CompaniesService {
 
   GetAllNotifications(UserId:number): Observable<object> {
     return this.http
-      .get(`https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/${UserId}/notifications`, this.httpOptions)
+      .get(`http://localhost:8080/api/v1/users/${UserId}/notifications`, this.httpOptions)
       .pipe(retry(2),catchError(this.handleError));
   }
 }

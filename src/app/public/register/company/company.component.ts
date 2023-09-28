@@ -211,7 +211,7 @@ export class CompanyComponent implements OnInit {
   verifyDeveloperUnregistered() {
     this.registered = false;
     var req = new XMLHttpRequest();
-    req.open('GET', `https://upc-si729-sw52-digitalmind.herokuapp.com/api/v1/users/searchByEmail/${this.registerForm.get("email")?.value}`, false);
+    req.open('GET', `http://localhost:8080/api/v1/users/searchByEmail/${this.registerForm.get("email")?.value}`, false);
     req.send(null);
     if (req.status == 200) {
       var user = JSON.parse(req.responseText);
